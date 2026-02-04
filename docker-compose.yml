@@ -8,3 +8,9 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.agendatario.rule=Host(`agendatario.com`)"
+      - "traefik.http.routers.agendatario.entrypoints=websecure"
+      - "traefik.http.routers.agendatario.tls=true"
+      - "traefik.http.services.agendatario.loadbalancer.server.port=3000"
